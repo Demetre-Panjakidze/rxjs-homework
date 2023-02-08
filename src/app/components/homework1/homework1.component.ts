@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { FormControl } from '@angular/forms';
+import { Observable, of, from, switchMap, map, debounceTime } from 'rxjs';
 
 interface Person {
   firstName: string;
@@ -14,6 +15,8 @@ interface Person {
   styleUrls: ['./homework1.component.scss'],
 })
 export class Homework1Component {
+  inputContent = new FormControl();
+
   itemsList: Person[] = [
     {
       id: 1,
@@ -35,5 +38,32 @@ export class Homework1Component {
     },
   ];
 
-  search$ = new Observable();
+  search$ = of(this.itemsList);
+
+  ngOnInit() {
+    this.inputContent.valueChanges
+      .pipe(
+        debounceTime(500),
+        switchMap((value) => {
+          return this.search$.pipe(
+            map((userObj) =>
+              userObj.filter(
+                (e) =>
+                  e.firstName.toLowerCase().includes(value.toLowerCase()) ||
+                  e.lastName.toLowerCase().includes(value.toLowerCase()) ||
+                  (e.firstName + ' ' + e.lastName)
+                    .toLowerCase()
+                    .includes(value.toLowerCase())
+              )
+            ),
+            map((e) =>
+              e.map((x) => {
+                return `${x.firstName} ${x.lastName}`;
+              })
+            )
+          );
+        })
+      )
+      .subscribe(console.log);
+  }
 }
