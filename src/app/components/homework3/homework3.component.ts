@@ -7,7 +7,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { fromEvent } from 'rxjs';
+import { debounceTime, delay, fromEvent } from 'rxjs';
 import { bla } from 'src/app/interfaces/IHomework';
 
 @Component({
@@ -16,22 +16,7 @@ import { bla } from 'src/app/interfaces/IHomework';
   styleUrls: ['./homework3.component.scss'],
 })
 export class Homework3Component implements AfterViewInit {
-  @ViewChild('container', { static: false }) container?: ElementRef;
-
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    const container = this.container?.nativeElement;
-    const { scrollTop, clientHeight, scrollHeight } = container;
-    if (scrollTop + clientHeight >= scrollHeight - this.step) {
-      this.peopleToShow = [
-        ...this.peopleToShow,
-        ...this.people.slice(
-          this.peopleToShow.length,
-          this.peopleToShow.length + this.step
-        ),
-      ];
-    }
-  }
+  @ViewChild('container') container: ElementRef | undefined;
 
   step: number = 20;
   people: bla[] = [];
@@ -39,6 +24,7 @@ export class Homework3Component implements AfterViewInit {
 
   ngAfterViewInit() {
     this.people = [
+      { firstName: 'Demetre', lastName: 'Panjakidze', age: 19 },
       { firstName: 'Ethan', lastName: 'Clark', age: 32 },
       { firstName: 'Emma', lastName: 'Martin', age: 27 },
       { firstName: 'Noah', lastName: 'Young', age: 34 },
@@ -138,13 +124,11 @@ export class Homework3Component implements AfterViewInit {
       { firstName: 'Aria', lastName: 'Young', age: 36 },
       { firstName: 'Lucas', lastName: 'Taylor', age: 33 },
       { firstName: 'Aurora', lastName: 'Johnson', age: 31 },
-      { firstName: 'Henry', lastName: 'Hall', age: 34 },
     ];
 
     this.peopleToShow = this.people.slice(0, this.step);
-
     const scrollStream = fromEvent(this.container?.nativeElement, 'scroll');
-    scrollStream.subscribe((event) => {
+    scrollStream.pipe(delay(500)).subscribe(() => {
       if (
         this.container?.nativeElement.scrollTop +
           this.container?.nativeElement.offsetHeight >=
@@ -155,14 +139,20 @@ export class Homework3Component implements AfterViewInit {
     });
   }
 
-  @ViewChild('container') elem: ElementRef | undefined;
-
-  func() {
-    console.log('scroll');
-  }
-
   loadMore() {
     this.step += 10;
     this.peopleToShow = this.people.slice(0, this.step);
+  }
+
+  scroled() {
+    // console.log('scrolled down by:', this.container?.nativeElement.scrollTop);
+    // console.log(
+    //   'height of the container:',
+    //   this.container?.nativeElement.offsetHeight
+    // );
+    // console.log(
+    //   'available height for scrolling:',
+    //   this.container?.nativeElement.scrollHeight
+    // );
   }
 }

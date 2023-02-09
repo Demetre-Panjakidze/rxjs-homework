@@ -4,7 +4,7 @@
   <button routerLink="/">Home</button>
 </header>
 <hr />
-<div class="container" #container (scroll)="func()">
+<div class="container" #container (scroll)="scroled()">
   <div class="user-div" *ngFor="let person of peopleToShow">
     <p>{{ person.firstName }} {{ person.lastName }}: {{ person.age }}</p>
   </div>

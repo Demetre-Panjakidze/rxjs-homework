@@ -22,30 +22,30 @@ export class Homework2Component {
   ];
 
   people: Person[] = [
-    { id: 1, jobId: 1, name: 'John', lastname: 'Doe' },
-    { id: 2, jobId: 5, name: 'Jane', lastname: 'Doe' },
-    { id: 3, jobId: 9, name: 'Bob', lastname: 'Smith' },
-    { id: 4, jobId: 6, name: 'Alice', lastname: 'Johnson' },
-    { id: 5, jobId: 3, name: 'Charlie', lastname: 'Brown' },
-    { id: 6, jobId: 6, name: 'Eve', lastname: 'Miller' },
-    { id: 7, jobId: 7, name: 'Mallory', lastname: 'Davis' },
-    { id: 8, jobId: 10, name: 'Peggy', lastname: 'Wilson' },
-    { id: 9, jobId: 2, name: 'Victor', lastname: 'Taylor' },
-    { id: 10, jobId: 5, name: 'Oscar', lastname: 'Anderson' },
-    { id: 11, jobId: 7, name: 'Alex', lastname: 'Thomas' },
-    { id: 12, jobId: 4, name: 'Ava', lastname: 'Moore' },
-    { id: 13, jobId: 8, name: 'Eli', lastname: 'Jackson' },
-    { id: 14, jobId: 10, name: 'Lila', lastname: 'Martin' },
-    { id: 15, jobId: 1, name: 'Nina', lastname: 'Lee' },
-    { id: 16, jobId: 2, name: 'Ella', lastname: 'Harris' },
-    { id: 17, jobId: 8, name: 'Sofia', lastname: 'Young' },
-    { id: 18, jobId: 9, name: 'Aria', lastname: 'Allen' },
-    { id: 19, jobId: 6, name: 'Evelyn', lastname: 'King' },
-    { id: 20, jobId: 7, name: 'Isabelle', lastname: 'Wright' },
+    { id: 1, jobId: 10, name: 'Demetre', lastname: 'Panjakidze' },
+    { id: 2, jobId: 1, name: 'John', lastname: 'Doe' },
+    { id: 3, jobId: 5, name: 'Jane', lastname: 'Doe' },
+    { id: 4, jobId: 9, name: 'Bob', lastname: 'Smith' },
+    { id: 5, jobId: 6, name: 'Alice', lastname: 'Johnson' },
+    { id: 6, jobId: 3, name: 'Charlie', lastname: 'Brown' },
+    { id: 7, jobId: 6, name: 'Eve', lastname: 'Miller' },
+    { id: 8, jobId: 7, name: 'Mallory', lastname: 'Davis' },
+    { id: 9, jobId: 10, name: 'Peggy', lastname: 'Wilson' },
+    { id: 10, jobId: 2, name: 'Victor', lastname: 'Taylor' },
+    { id: 11, jobId: 5, name: 'Oscar', lastname: 'Anderson' },
+    { id: 12, jobId: 7, name: 'Alex', lastname: 'Thomas' },
+    { id: 13, jobId: 4, name: 'Ava', lastname: 'Moore' },
+    { id: 14, jobId: 8, name: 'Eli', lastname: 'Jackson' },
+    { id: 15, jobId: 10, name: 'Lila', lastname: 'Martin' },
+    { id: 16, jobId: 1, name: 'Nina', lastname: 'Lee' },
+    { id: 17, jobId: 2, name: 'Ella', lastname: 'Harris' },
+    { id: 18, jobId: 8, name: 'Sofia', lastname: 'Young' },
+    { id: 19, jobId: 9, name: 'Aria', lastname: 'Allen' },
+    { id: 20, jobId: 6, name: 'Evelyn', lastname: 'King' },
   ];
 
   ngOnInit() {
-    this.getPeople(['Business Analyst', 'Project Manager']).subscribe(
+    this.getPeople(['Full Stack Developer', 'Project Manager']).subscribe(
       console.log
     );
   }
