@@ -45,23 +45,20 @@ export class Homework2Component {
   ];
 
   ngOnInit() {
-    this.getPeople([
-      'Business Analyst',
-      'Full Stack Developer',
-      'Software Engineer',
-    ]).subscribe(console.log);
+    this.getPeople(['Business Analyst', 'Project Manager']).subscribe(
+      console.log
+    );
   }
 
   getPeople(jobs: string[]) {
-    const jobIds = jobs.map(
-      (jobName) => this.jobs.findIndex((job) => job.name === jobName) + 1
+    const jobID = jobs.map(
+      (jobName) => this.jobs.findIndex((job) => job.name == jobName) + 1
     );
-
     return from(this.people).pipe(
-      filter((person) => jobIds.includes(person.jobId)),
-      map((person) => {
-        const job = this.jobs.find((job) => job.id === person.jobId);
-        return `${person.name} ${person.lastname} is a ${job ? job.name : ''}`;
+      filter((person) => jobID.includes(person.jobId)),
+      map((filteredPerson) => {
+        const job = this.jobs.find((job) => job.id === filteredPerson.jobId);
+        return `${filteredPerson.name} ${filteredPerson.lastname} is a ${job?.name}`;
       })
     );
   }
