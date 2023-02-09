@@ -2,6 +2,8 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  HostListener,
+  OnDestroy,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -13,10 +15,10 @@ import { bla } from 'src/app/interfaces/IHomework';
   templateUrl: './homework3.component.html',
   styleUrls: ['./homework3.component.scss'],
 })
-export class Homework3Component implements AfterViewInit, OnInit {
-  @ViewChild('container') elem: ElementRef | undefined;
+export class Homework3Component implements AfterViewInit {
+  ngAfterViewInit() {}
 
-  // { firstName: 'John', lastName: 'Doe', age: 30 } - 100 times:
+  // Objects like { firstName: 'John', lastName: 'Doe', age: 30 } 100 times:
   people: bla[] = [
     { firstName: 'Ethan', lastName: 'Clark', age: 32 },
     { firstName: 'Emma', lastName: 'Martin', age: 27 },
@@ -120,17 +122,8 @@ export class Homework3Component implements AfterViewInit, OnInit {
     { firstName: 'Henry', lastName: 'Hall', age: 34 },
   ];
 
-  ngOnInit() {}
-
-  ngAfterViewInit() {
-    const scrollEvent = fromEvent(this.elem?.nativeElement, 'scroll');
-    scrollEvent.subscribe(console.log);
+  @ViewChild('container') elem: ElementRef | undefined;
+  func() {
+    console.log('scroll');
   }
-  /* 
-  Given a list of items and a container with a fixed height, create an observable that loads
-  and appends the next batch of items to the list every time the user scrolls 
-  to the bottom of the container. The list should keep loading batches until all items have been loaded.
-  */
-  // 1) უნდა მქონდეს რაღაც list-ი [] და რაღაც კონტეინერი ზომებით
-  // 2)
 }
