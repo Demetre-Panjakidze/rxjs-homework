@@ -16,3 +16,9 @@ export interface Person {
   name: string;
   lastname: string;
 }
+
+export interface bla {
+  firstName: string;
+  lastName: string;
+  age: number;
+}
