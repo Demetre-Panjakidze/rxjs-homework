@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of, from, map, filter } from 'rxjs';
 import { Job, Person } from 'src/app/interfaces/IHomework';
 
 @Component({
@@ -8,10 +8,6 @@ import { Job, Person } from 'src/app/interfaces/IHomework';
   styleUrls: ['./homework2.component.scss'],
 })
 export class Homework2Component {
-  getPeople(job: string[]) {
-    return new Observable((x) => {});
-  }
-
   jobs: Job[] = [
     { id: 1, name: 'Software Engineer' },
     { id: 2, name: 'Product Manager' },
@@ -48,7 +44,25 @@ export class Homework2Component {
     { id: 20, jobId: 7, name: 'Isabelle', lastname: 'Wright' },
   ];
 
-  // getPeople(['Developer', 'Doctor']).subscribe(x => console.log(x))
+  ngOnInit() {
+    this.getPeople([
+      'Business Analyst',
+      'Full Stack Developer',
+      'Software Engineer',
+    ]).subscribe(console.log);
+  }
 
-  // x => ['ani mchedlidze is a developer', 'levan begashvili is a developer', 'giorgi bazera is a doctor']
+  getPeople(jobs: string[]) {
+    const jobIds = jobs.map(
+      (jobName) => this.jobs.findIndex((job) => job.name === jobName) + 1
+    );
+
+    return from(this.people).pipe(
+      filter((person) => jobIds.includes(person.jobId)),
+      map((person) => {
+        const job = this.jobs.find((job) => job.id === person.jobId);
+        return `${person.name} ${person.lastname} is a ${job ? job.name : ''}`;
+      })
+    );
+  }
 }

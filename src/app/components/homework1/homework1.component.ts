@@ -1,6 +1,14 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Observable, of, from, switchMap, map, debounceTime } from 'rxjs';
+import {
+  Observable,
+  of,
+  from,
+  switchMap,
+  map,
+  debounceTime,
+  distinctUntilChanged,
+} from 'rxjs';
 import { About } from 'src/app/interfaces/IHomework';
 
 class AboutPerson {
@@ -58,7 +66,8 @@ export class Homework1Component {
   ngOnInit() {
     this.inputContent.valueChanges
       .pipe(
-        debounceTime(500),
+        debounceTime(300),
+        distinctUntilChanged(),
         switchMap((value) => {
           return this.search$.pipe(
             map((userObj) =>

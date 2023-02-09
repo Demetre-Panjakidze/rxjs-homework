@@ -1,0 +1,21 @@
+form {
+  margin: 10px 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  input {
+    min-width: 250px;
+    align-self: flex-start;
+  }
+
+  button {
+    align-self: flex-start;
+  }
+}
+
+@media (min-width: 1000px) {
+  form {
+    margin: 10px 75px;
+  }
+}
