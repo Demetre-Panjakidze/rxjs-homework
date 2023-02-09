@@ -8,7 +8,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { debounceTime, delay, fromEvent } from 'rxjs';
-import { bla } from 'src/app/interfaces/IHomework';
+import { UserInfo } from 'src/app/interfaces/IHomework';
 
 @Component({
   selector: 'app-homework3',
@@ -19,7 +19,7 @@ export class Homework3Component implements AfterViewInit {
   @ViewChild('container') container: ElementRef | undefined;
 
   step: number = 20;
-  people: bla[] = [
+  people: UserInfo[] = [
     { firstName: 'Demetre', lastName: 'Panjakidze', age: 19 },
     { firstName: 'Ethan', lastName: 'Clark', age: 32 },
     { firstName: 'Emma', lastName: 'Martin', age: 27 },
@@ -121,7 +121,7 @@ export class Homework3Component implements AfterViewInit {
     { firstName: 'Lucas', lastName: 'Taylor', age: 33 },
     { firstName: 'Aurora', lastName: 'Johnson', age: 31 },
   ];
-  peopleToShow: bla[] = [];
+  peopleToShow: UserInfo[] = [];
 
   ngAfterViewInit() {
     this.peopleToShow = this.people.slice(0, this.step);
@@ -138,7 +138,7 @@ export class Homework3Component implements AfterViewInit {
   }
 
   loadMore() {
-    this.step += 10;
+    this.step += 5;
     this.peopleToShow = this.people.slice(0, this.step);
   }
 

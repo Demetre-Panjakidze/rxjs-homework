@@ -17,7 +17,7 @@ export interface Person {
   lastname: string;
 }
 
-export interface bla {
+export interface UserInfo {
   firstName: string;
   lastName: string;
   age: number;
