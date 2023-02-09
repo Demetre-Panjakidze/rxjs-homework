@@ -1,13 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable, of, from, switchMap, map, debounceTime } from 'rxjs';
-
-interface Person {
-  firstName: string;
-  lastName: string;
-  age: number;
-  id: number;
-}
+import { About } from 'src/app/interfaces/IHomework';
 
 @Component({
   selector: 'app-homework1',
@@ -17,7 +11,7 @@ interface Person {
 export class Homework1Component {
   inputContent = new FormControl();
 
-  itemsList: Person[] = [
+  itemsList: About[] = [
     {
       id: 1,
       firstName: 'Demetre',
